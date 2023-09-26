@@ -1,0 +1,24 @@
+name: "Echo inputs branch"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "デプロイするブランチ名"
+        required: true
+        default: "staging"
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: nextjs
+
+    steps:
+    - name: Build
+      run: |
+        echo ${{ inputs.branch }}
